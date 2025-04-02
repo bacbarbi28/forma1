@@ -1,0 +1,22 @@
+<mat-card class="team-card" [ngClass]="colorClass">
+  <div class="header" [style.backgroundImage]="'url(' + imageUrl + ')'">
+    <div class="overlay">
+      <mat-chip class="engine">{{ engine }}</mat-chip>
+      <div class="team-info">
+        <h2>{{ teamName }}</h2>
+        <img *ngIf="logoUrl" class="logo" [src]="logoUrl" />
+      </div>
+    </div>
+  </div>
+  <mat-card-content>
+    <div class="drivers">
+      <span *ngFor="let driver of drivers" class="driver-chip">{{
+        driver
+      }}</span>
+    </div>
+    <div class="points">
+      <div class="position">{{ position }}</div>
+      <div class="pts">{{ points }} PTS</div>
+    </div>
+  </mat-card-content>
+</mat-card>

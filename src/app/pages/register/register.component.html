@@ -1,0 +1,81 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Regisztráció</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <label>Teljes név</label>
+      <input
+        type="text"
+        formControlName="fullName"
+        class="form-input"
+        placeholder="Név"
+      />
+      <div
+        class="error"
+        *ngIf="
+          registerForm.get('fullName')?.invalid &&
+          registerForm.get('fullName')?.touched
+        "
+      >
+        Név megadása kötelező
+      </div>
+
+      <label>Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        class="form-input"
+        placeholder="email@pelda.hu"
+      />
+      <div
+        class="error"
+        *ngIf="
+          registerForm.get('email')?.invalid &&
+          registerForm.get('email')?.touched
+        "
+      >
+        Érvényes email szükséges
+      </div>
+
+      <label>Jelszó</label>
+      <input
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password"
+        class="form-input"
+      />
+      <div
+        class="error"
+        *ngIf="
+          registerForm.get('password')?.invalid &&
+          registerForm.get('password')?.touched
+        "
+      >
+        Jelszó szükséges
+      </div>
+
+      <label>Jelszó megerősítése</label>
+      <input
+        [type]="hideConfirm ? 'password' : 'text'"
+        formControlName="confirmPassword"
+        class="form-input"
+      />
+      <div
+        class="error"
+        *ngIf="
+          registerForm.get('confirmPassword')?.invalid &&
+          registerForm.get('confirmPassword')?.touched
+        "
+      >
+        Erősítsd meg a jelszót
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid">
+        Regisztráció
+      </button>
+    </form>
+
+    <p class="register">
+      Már van fiókod? <a routerLink="/login">Jelentkezz be</a>
+    </p>
+  </div>
+</div>

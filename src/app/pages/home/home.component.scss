@@ -1,13 +1,109 @@
-.welcome-card {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-  
-    .action-buttons {
-      margin-top: 1.5rem;
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
+.hero {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 12px;
+  margin: 2rem;
+  overflow: hidden;
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    text-shadow: 1px 1px 2px black;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
     }
   }
-  
+}
+
+.section-title {
+  text-align: center;
+  margin-top: 3rem;
+
+  h2 {
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+
+  h2::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: #e53935;
+    bottom: 0;
+    left: 25%;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+
+  .article-card {
+    width: 340px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .image-container {
+      position: relative;
+
+      img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .date-overlay {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: rgba(255, 255, 255, 0.85);
+        color: #333;
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+    }
+
+    h3 {
+      margin: 0.5rem 0;
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #aaa;
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

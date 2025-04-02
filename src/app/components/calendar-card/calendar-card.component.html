@@ -1,0 +1,15 @@
+<mat-card class="calendar-card">
+  <mat-chip class="date-chip">{{ date }}</mat-chip>
+
+  <div class="header" [style.backgroundImage]="'url(' + imageUrl + ')'">
+    <div class="overlay">
+      <h2 class="event-title">{{ eventName }}</h2>
+    </div>
+  </div>
+
+  <mat-card-content>
+    <div class="location">
+      <span class="city">{{ location }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,56 @@
+.calendar-card {
+  width: 400px;
+  margin: 1rem;
+  background: #2b2b2b;
+  color: white;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+
+  .date-chip {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #e53935;
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+    z-index: 2;
+  }
+
+  .header {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+
+      .event-title {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  mat-card-content {
+    background-color: #3a3a3a;
+    padding: 0.75rem 1rem;
+
+    .location {
+      .city {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #bdbdbd;
+      }
+    }
+  }
+}

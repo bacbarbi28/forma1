@@ -1,12 +1,27 @@
-<mat-card class="welcome-card">
-  <mat-card-title>szia</mat-card-title>
-  <mat-card-content>
-    <p>szöveg</p>
-    <div class="action-buttons">
-      <a mat-raised-button color="primary" routerLink="/login">Bejelentkezés</a>
-      <a mat-raised-button color="accent" routerLink="/register"
-        >Regisztráció</a
-      >
+<div class="hero" [style.backgroundImage]="'url(' + featured.imageUrl + ')'">
+  <div class="overlay">
+    <h1>{{ featured.title }}</h1>
+    <p>{{ featured.subtitle }}</p>
+    <button mat-raised-button color="primary">Olvasd el</button>
+  </div>
+</div>
+
+<div class="section-title">
+  <h2>Friss cikkek</h2>
+</div>
+
+<div class="grid">
+  <mat-card class="article-card" *ngFor="let article of articles">
+    <div class="image-container">
+      <img mat-card-image [src]="article.imageUrl" />
+      <div class="date-overlay">{{ article.date }}</div>
     </div>
-  </mat-card-content>
-</mat-card>
+    <mat-card-content>
+      <h3>{{ article.title }}</h3>
+      <p>{{ article.description }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="accent">Részletek</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,47 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Bejelentkezés</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <label>Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        class="form-input"
+        placeholder="pelda@email.hu"
+      />
+      <div
+        class="error"
+        *ngIf="
+          loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+        "
+      >
+        Érvényes email szükséges
+      </div>
+
+      <label>Jelszó</label>
+      <input
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        class="form-input"
+      />
+      <div
+        class="error"
+        *ngIf="
+          loginForm.get('password')?.invalid &&
+          loginForm.get('password')?.touched
+        "
+      >
+        Jelszó szükséges
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">
+        Bejelentkezés
+      </button>
+    </form>
+
+    <p class="register">
+      Nincs fiókod? <a routerLink="/register">Regisztrálj</a>
+    </p>
+  </div>
+</div>
