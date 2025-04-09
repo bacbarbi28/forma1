@@ -2,7 +2,9 @@
   <div class="overlay">
     <h1>{{ featured.title }}</h1>
     <p>{{ featured.subtitle }}</p>
-    <button mat-raised-button color="primary">Olvasd el</button>
+    <button mat-raised-button color="primary" routerLink="/article">
+      Olvasd el
+    </button>
   </div>
 </div>
 
@@ -21,7 +23,9 @@
       <p>{{ article.description }}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button color="accent">Részletek</button>
+      <a routerLink="/article"
+        ><button mat-button color="accent">Részletek</button></a
+      >
     </mat-card-actions>
   </mat-card>
 </div>

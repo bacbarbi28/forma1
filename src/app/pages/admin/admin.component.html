@@ -1,0 +1,41 @@
+<div class="admin-container">
+  <div class="admin-card">
+    <h2>Új cikk létrehozása</h2>
+
+    <form [formGroup]="articleForm" (ngSubmit)="onCreate()">
+      <label>Cím</label>
+      <input
+        type="text"
+        class="form-input"
+        formControlName="title"
+        placeholder="Cikk címe"
+      />
+
+      <label>Kép URL</label>
+      <input
+        type="text"
+        class="form-input"
+        formControlName="imageUrl"
+        placeholder="https://..."
+      />
+
+      <label>Dátum</label>
+      <input
+        type="text"
+        class="form-input"
+        formControlName="date"
+        placeholder="2025. április 15."
+      />
+
+      <label>Tartalom</label>
+      <textarea
+        rows="6"
+        class="form-input"
+        formControlName="content"
+        placeholder="Cikk szövege..."
+      ></textarea>
+
+      <button type="submit" [disabled]="articleForm.invalid">Létrehozás</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="article-container">
+  <div
+    class="header-image"
+    [style.backgroundImage]="'url(' + article.imageUrl + ')'"
+  >
+    <div class="overlay">
+      <h1>{{ article.title }}</h1>
+      <p class="meta">{{ article.author }} • {{ article.date }}</p>
+    </div>
+  </div>
+
+  <div class="article-body">
+    <p *ngFor="let paragraph of article.content.trim().split('\\n\\n')">
+      {{ paragraph }}
+    </p>
+  </div>
+</div>
