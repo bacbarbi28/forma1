@@ -1,4 +1,22 @@
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.desktop-menu {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mobile-menu-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
   }
-  
+
+  .mobile-menu-button {
+    display: block;
+  }
+}

@@ -1,0 +1,49 @@
+<div class="event-dialog-container">
+  <h2>{{ data ? "Esemény szerkesztése" : "Új esemény hozzáadása" }}</h2>
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="form-grid">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Dátum</mat-label>
+        <input matInput formControlName="date" placeholder="Pl: ÁPRILIS 11" />
+        <mat-error *ngIf="form.get('date')?.errors?.['required']">
+          A dátum megadása kötelező
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Esemény neve</mat-label>
+        <input
+          matInput
+          formControlName="eventName"
+          placeholder="Pl: Bahrain GP"
+        />
+        <mat-error *ngIf="form.get('eventName')?.errors?.['required']">
+          Az esemény neve kötelező
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Kép URL</mat-label>
+        <input matInput formControlName="imageUrl" placeholder="redbull.jpg" />
+        <mat-error *ngIf="form.get('imageUrl')?.errors?.['required']">
+          A kép URL megadása kötelező
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Helyszín</mat-label>
+        <input matInput formControlName="location" placeholder="Sakhir" />
+        <mat-error *ngIf="form.get('location')?.errors?.['required']">
+          A helyszín megadása kötelező
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="dialog-actions">
+      <button mat-stroked-button type="submit" [disabled]="form.invalid">
+        Mentés
+      </button>
+      <button mat-button type="button" (click)="cancel()">Mégse</button>
+    </div>
+  </form>
+</div>

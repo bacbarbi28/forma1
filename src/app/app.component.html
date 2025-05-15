@@ -1,12 +1,51 @@
 <mat-toolbar color="primary">
-  Forma 1
+  <span>Forma 1</span>
   <span class="spacer"></span>
-  <a mat-button routerLink="/">Főoldal</a>
-  <a mat-button routerLink="/teams">Csapatok</a>
-  <a mat-button routerLink="/calendar">Naptár</a>
-  <a mat-button routerLink="/login">Bejelentkezés</a>
-  <a mat-button routerLink="/admin">Admin</a>
-  <a mat-button routerLink="/">Kijelentkezés</a>
+
+  <!-- Asztali nézet -->
+  <nav class="desktop-menu">
+    <a mat-button routerLink="/">Főoldal</a>
+    <a mat-button routerLink="/teams">Csapatok</a>
+    <a mat-button routerLink="/calendar">Naptár</a>
+
+    <ng-container *ngIf="user$ | async as user; else desktopLoggedOut">
+      <ng-container *ngIf="(role$ | async) === 'admin'">
+        <a mat-button routerLink="/admin">Admin</a>
+      </ng-container>
+      <a mat-button (click)="logout()">Kijelentkezés</a>
+    </ng-container>
+
+    <ng-template #desktopLoggedOut>
+      <a mat-button routerLink="/login">Bejelentkezés</a>
+      <a mat-button routerLink="/register">Regisztráció</a>
+    </ng-template>
+  </nav>
+
+  <!-- Mobil nézet -->
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="mobileMenu"
+    class="mobile-menu-button"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #mobileMenu="matMenu">
+    <button mat-menu-item routerLink="/">Főoldal</button>
+    <button mat-menu-item routerLink="/teams">Csapatok</button>
+    <button mat-menu-item routerLink="/calendar">Naptár</button>
+
+    <ng-container *ngIf="user$ | async as user; else mobileLoggedOut">
+      <ng-container *ngIf="(role$ | async) === 'admin'">
+        <button mat-menu-item routerLink="/admin">Admin</button>
+      </ng-container>
+      <button mat-menu-item (click)="logout()">Kijelentkezés</button>
+    </ng-container>
+
+    <ng-template #mobileLoggedOut>
+      <button mat-menu-item routerLink="/login">Bejelentkezés</button>
+      <button mat-menu-item routerLink="/register">Regisztráció</button>
+    </ng-template>
+  </mat-menu>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

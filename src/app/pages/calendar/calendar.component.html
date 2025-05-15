@@ -1,15 +1,64 @@
-<div class="event-card-container">
-  <app-calendar-card
-    [date]="'ÁPRILIS 11'"
-    [eventName]="'Bahrain Grand Prix'"
-    [imageUrl]="'redbull.jpg'"
-    [location]="'Sakhir'"
-  ></app-calendar-card>
+<div class="event-page-container">
+  <div class="controls-container">
+    <ng-container *ngIf="role$ | async as role">
+      <button
+        *ngIf="role === 'admin'"
+        mat-raised-button
+        color="primary"
+        (click)="openAddDialog()"
+      >
+        <mat-icon>add</mat-icon> Új esemény
+      </button>
+    </ng-container>
 
-  <app-calendar-card
-    [date]="'ÁRPILIS 18'"
-    [eventName]="'Saudi Arabia Grand Prix'"
-    [imageUrl]="'ferrari.jpg'"
-    [location]="'Jeddah'"
-  ></app-calendar-card>
+    <div class="search-filters">
+      <mat-form-field appearance="outline">
+        <mat-label>Keresés</mat-label>
+        <input
+          matInput
+          [formControl]="searchControl"
+          placeholder="Esemény neve..."
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Helyszín szerint</mat-label>
+        <mat-select
+          [formControl]="locationControl"
+          (selectionChange)="filterByLocation()"
+        >
+          <mat-option value="">Mind</mat-option>
+          <ng-container *ngIf="locations$ | async as locations">
+            <mat-option *ngFor="let location of locations" [value]="location">
+              {{ location }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="event-card-container">
+    <ng-container *ngIf="events$ | async as events">
+      <ng-container *ngFor="let event of events">
+        <app-calendar-card
+          [date]="event.date"
+          [eventName]="event.eventName"
+          [imageUrl]="event.imageUrl"
+          [location]="event.location"
+          [isAdmin]="(role$ | async) === 'admin'"
+          [event]="event"
+          (edit)="openEditDialog($event)"
+          (delete)="deleteEvent($event)"
+        ></app-calendar-card>
+      </ng-container>
+
+      <div *ngIf="lastDoc" class="load-more">
+        <button mat-button (click)="loadMore()" [disabled]="loading">
+          {{ loading ? "Betöltés..." : "További események betöltése" }}
+        </button>
+      </div>
+    </ng-container>
+  </div>
 </div>

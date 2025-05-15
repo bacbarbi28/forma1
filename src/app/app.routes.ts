@@ -4,8 +4,8 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { ArticleComponent } from './pages/article/article.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +13,17 @@ export const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'article', component: ArticleComponent },
-  { path: 'admin', component: AdminComponent },
+  {
+    path: 'article/:id',
+    loadComponent: () =>
+      import('./pages/article/article.component').then(
+        (m) => m.ArticleComponent
+      ),
+  },
+
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [adminGuard],
+  },
 ];

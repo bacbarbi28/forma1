@@ -1,0 +1,76 @@
+<div class="team-dialog-container">
+  <h2>{{ data ? "Csapat szerkesztése" : "Új csapat hozzáadása" }}</h2>
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Csapatnév</mat-label>
+      <input matInput formControlName="teamName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Motor</mat-label>
+      <input matInput formControlName="engine" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Pontok</mat-label>
+      <input matInput type="number" formControlName="points" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Helyezés</mat-label>
+      <input matInput type="number" formControlName="position" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Csapatkép URL</mat-label>
+      <input matInput formControlName="imageUrl" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Logó URL</mat-label>
+      <input matInput formControlName="logoUrl" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Színtéma CSS osztály</mat-label>
+      <input matInput formControlName="colorClass" />
+    </mat-form-field>
+
+    <div class="drivers-section">
+      <label for="driverInput">Pilóták</label>
+
+      <div class="drivers-list">
+        <span *ngFor="let driver of drivers; let i = index" class="driver-chip">
+          {{ driver }}
+          <button type="button" mat-icon-button (click)="removeDriver(i)">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </span>
+      </div>
+
+      <div class="add-driver">
+        <input
+          [(ngModel)]="driverInput"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Új pilóta neve"
+          class="form-input"
+        />
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="addDriver()"
+          [disabled]="!driverInput.trim()"
+        >
+          Hozzáadás
+        </button>
+      </div>
+    </div>
+
+    <div class="dialog-actions">
+      <button mat-stroked-button type="submit" [disabled]="form.invalid">
+        Mentés
+      </button>
+      <button mat-button type="button" (click)="cancel()">Mégse</button>
+    </div>
+  </form>
+</div>

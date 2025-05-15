@@ -1,17 +1,23 @@
-<div class="article-container">
-  <div
-    class="header-image"
-    [style.backgroundImage]="'url(' + article.imageUrl + ')'"
-  >
-    <div class="overlay">
-      <h1>{{ article.title }}</h1>
-      <p class="meta">{{ article.author }} • {{ article.date }}</p>
+<ng-container *ngIf="article; else loading">
+  <div class="article-container">
+    <div
+      class="header-image"
+      [style.backgroundImage]="'url(' + article.imageUrl + ')'"
+    >
+      <div class="overlay">
+        <h1>{{ article.title }}</h1>
+        <p class="meta">
+          {{ article.createdAt.toDate() | date : "yyyy. MMMM dd." }}
+        </p>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>{{ article.content }}</p>
     </div>
   </div>
+</ng-container>
 
-  <div class="article-body">
-    <p *ngFor="let paragraph of article.content.trim().split('\\n\\n')">
-      {{ paragraph }}
-    </p>
-  </div>
-</div>
+<ng-template #loading>
+  <p class="loading-text">Betöltés...</p>
+</ng-template>
